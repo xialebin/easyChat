@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.app.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.app.pojo.User" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="openid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sn" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="realname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mobile" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="directTeamNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="teamNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="wechat" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nickname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="headimgurl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sotp_recruit" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="idcard" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_check" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="isCheckCard" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="password" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="payPassword" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="idcardPhoto1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="idcardPhoto2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lifePhoto" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="wechatUserinfo" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="deviceType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_xy" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="xy_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_use_password" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="is_oversease" jdbcType="TINYINT" javaType="java.lang.Byte" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, openid, sn, name, realname, mobile, directTeamNum, teamNum, wechat, nickname, 
+    headimgurl, sotp_recruit, email, idcard, is_check, isCheckCard, time, password, payPassword, 
+    idcardPhoto1, idcardPhoto2, lifePhoto, wechatUserinfo, deviceType, is_xy, xy_time, 
+    is_use_password, is_oversease
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.app.pojo.User" >
+    insert into user (id, openid, sn, 
+      name, realname, mobile, 
+      directTeamNum, teamNum, wechat, 
+      nickname, headimgurl, sotp_recruit, 
+      email, idcard, is_check, 
+      isCheckCard, time, password, 
+      payPassword, idcardPhoto1, idcardPhoto2, 
+      lifePhoto, wechatUserinfo, deviceType, 
+      is_xy, xy_time, is_use_password, 
+      is_oversease)
+    values (#{id,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{directteamnum,jdbcType=INTEGER}, #{teamnum,jdbcType=INTEGER}, #{wechat,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{headimgurl,jdbcType=VARCHAR}, #{sotpRecruit,jdbcType=BIT}, 
+      #{email,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{isCheck,jdbcType=TINYINT}, 
+      #{ischeckcard,jdbcType=TINYINT}, #{time,jdbcType=INTEGER}, #{password,jdbcType=CHAR}, 
+      #{paypassword,jdbcType=VARCHAR}, #{idcardphoto1,jdbcType=VARCHAR}, #{idcardphoto2,jdbcType=VARCHAR}, 
+      #{lifephoto,jdbcType=VARCHAR}, #{wechatuserinfo,jdbcType=TINYINT}, #{devicetype,jdbcType=VARCHAR}, 
+      #{isXy,jdbcType=TINYINT}, #{xyTime,jdbcType=INTEGER}, #{isUsePassword,jdbcType=TINYINT}, 
+      #{isOversease,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.app.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="directteamnum != null" >
+        directTeamNum,
+      </if>
+      <if test="teamnum != null" >
+        teamNum,
+      </if>
+      <if test="wechat != null" >
+        wechat,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="headimgurl != null" >
+        headimgurl,
+      </if>
+      <if test="sotpRecruit != null" >
+        sotp_recruit,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="isCheck != null" >
+        is_check,
+      </if>
+      <if test="ischeckcard != null" >
+        isCheckCard,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="paypassword != null" >
+        payPassword,
+      </if>
+      <if test="idcardphoto1 != null" >
+        idcardPhoto1,
+      </if>
+      <if test="idcardphoto2 != null" >
+        idcardPhoto2,
+      </if>
+      <if test="lifephoto != null" >
+        lifePhoto,
+      </if>
+      <if test="wechatuserinfo != null" >
+        wechatUserinfo,
+      </if>
+      <if test="devicetype != null" >
+        deviceType,
+      </if>
+      <if test="isXy != null" >
+        is_xy,
+      </if>
+      <if test="xyTime != null" >
+        xy_time,
+      </if>
+      <if test="isUsePassword != null" >
+        is_use_password,
+      </if>
+      <if test="isOversease != null" >
+        is_oversease,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="directteamnum != null" >
+        #{directteamnum,jdbcType=INTEGER},
+      </if>
+      <if test="teamnum != null" >
+        #{teamnum,jdbcType=INTEGER},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null" >
+        #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sotpRecruit != null" >
+        #{sotpRecruit,jdbcType=BIT},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null" >
+        #{isCheck,jdbcType=TINYINT},
+      </if>
+      <if test="ischeckcard != null" >
+        #{ischeckcard,jdbcType=TINYINT},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="paypassword != null" >
+        #{paypassword,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardphoto1 != null" >
+        #{idcardphoto1,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardphoto2 != null" >
+        #{idcardphoto2,jdbcType=VARCHAR},
+      </if>
+      <if test="lifephoto != null" >
+        #{lifephoto,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatuserinfo != null" >
+        #{wechatuserinfo,jdbcType=TINYINT},
+      </if>
+      <if test="devicetype != null" >
+        #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="isXy != null" >
+        #{isXy,jdbcType=TINYINT},
+      </if>
+      <if test="xyTime != null" >
+        #{xyTime,jdbcType=INTEGER},
+      </if>
+      <if test="isUsePassword != null" >
+        #{isUsePassword,jdbcType=TINYINT},
+      </if>
+      <if test="isOversease != null" >
+        #{isOversease,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.app.pojo.User" >
+    update user
+    <set >
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="directteamnum != null" >
+        directTeamNum = #{directteamnum,jdbcType=INTEGER},
+      </if>
+      <if test="teamnum != null" >
+        teamNum = #{teamnum,jdbcType=INTEGER},
+      </if>
+      <if test="wechat != null" >
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null" >
+        headimgurl = #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sotpRecruit != null" >
+        sotp_recruit = #{sotpRecruit,jdbcType=BIT},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null" >
+        is_check = #{isCheck,jdbcType=TINYINT},
+      </if>
+      <if test="ischeckcard != null" >
+        isCheckCard = #{ischeckcard,jdbcType=TINYINT},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="paypassword != null" >
+        payPassword = #{paypassword,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardphoto1 != null" >
+        idcardPhoto1 = #{idcardphoto1,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardphoto2 != null" >
+        idcardPhoto2 = #{idcardphoto2,jdbcType=VARCHAR},
+      </if>
+      <if test="lifephoto != null" >
+        lifePhoto = #{lifephoto,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatuserinfo != null" >
+        wechatUserinfo = #{wechatuserinfo,jdbcType=TINYINT},
+      </if>
+      <if test="devicetype != null" >
+        deviceType = #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="isXy != null" >
+        is_xy = #{isXy,jdbcType=TINYINT},
+      </if>
+      <if test="xyTime != null" >
+        xy_time = #{xyTime,jdbcType=INTEGER},
+      </if>
+      <if test="isUsePassword != null" >
+        is_use_password = #{isUsePassword,jdbcType=TINYINT},
+      </if>
+      <if test="isOversease != null" >
+        is_oversease = #{isOversease,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.app.pojo.User" >
+    update user
+    set openid = #{openid,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      directTeamNum = #{directteamnum,jdbcType=INTEGER},
+      teamNum = #{teamnum,jdbcType=INTEGER},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      headimgurl = #{headimgurl,jdbcType=VARCHAR},
+      sotp_recruit = #{sotpRecruit,jdbcType=BIT},
+      email = #{email,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      is_check = #{isCheck,jdbcType=TINYINT},
+      isCheckCard = #{ischeckcard,jdbcType=TINYINT},
+      time = #{time,jdbcType=INTEGER},
+      password = #{password,jdbcType=CHAR},
+      payPassword = #{paypassword,jdbcType=VARCHAR},
+      idcardPhoto1 = #{idcardphoto1,jdbcType=VARCHAR},
+      idcardPhoto2 = #{idcardphoto2,jdbcType=VARCHAR},
+      lifePhoto = #{lifephoto,jdbcType=VARCHAR},
+      wechatUserinfo = #{wechatuserinfo,jdbcType=TINYINT},
+      deviceType = #{devicetype,jdbcType=VARCHAR},
+      is_xy = #{isXy,jdbcType=TINYINT},
+      xy_time = #{xyTime,jdbcType=INTEGER},
+      is_use_password = #{isUsePassword,jdbcType=TINYINT},
+      is_oversease = #{isOversease,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
