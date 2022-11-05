@@ -65,11 +65,5 @@ public class ChatMessageServiceImpl implements ChatMessageService {
         return mongo.find(query,ChatMessage.class);
     }
 
-    //根据ID删除
-    public long delMessage(Long id){
-        Query query = new Query(Criteria.where("id").is(id));
-        return mongo.remove(query, ChatMessage.class).getDeletedCount();
-    }
-
 
 }

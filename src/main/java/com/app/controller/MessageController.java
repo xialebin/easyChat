@@ -11,14 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.nio.channels.ServerSocketChannel;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 @CrossOrigin(origins = "*",allowCredentials = "true")
 @RestController
@@ -49,18 +43,6 @@ public class MessageController {
             userId = Integer.valueOf((String) redis.opsForValue().get(token));
         }
 
-
-        try {
-            ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-            serverSocketChannel.accept();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        Executors.newCachedThreadPool();
-
         if (userId == null) {
            return MessageResponse.createFailMessageResponse("身份已过期");
         }
@@ -81,25 +63,4 @@ public class MessageController {
 
         return MessageResponse.createSuccessMessageResponse(list);
     }
-
-    @RequestMapping("/del_message")
-    public MessageResponse del(@RequestParam String token,@RequestParam Integer id){
-
-        String pass = null;
-        if (redis.opsForValue().get(token) != null) {
-            pass = (String) redis.opsForValue().get(token);
-        }
-
-        if (pass == null) {
-            return MessageResponse.createFailMessageResponse("身份已过期");
-        }
-
-        if (pass.equals("12345;;")) {
-            long count = chatMessageService.delMessage((long) id);
-            return MessageResponse.createFailMessageResponse(String.valueOf(count));
-        }
-
-        return MessageResponse.createFailMessageResponse("非法访问");
-    }
-
 }

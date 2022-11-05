@@ -1,6 +1,6 @@
 package com.app;
 
-import com.app.common.server.group.ChatGroupServer;
+import com.app.common.server.websocket.WSServer;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -15,9 +15,7 @@ public class NettyBooter implements ApplicationListener<ContextRefreshedEvent> {
         if (event.getApplicationContext().getParent() == null) {
 
             try {
-                ChatGroupServer.getInstance().start();
-//                WSServer.getInstance().start();
-//                TCPServer.getInstance().start();
+                WSServer.getInstance().start();
             } catch (Exception e) {
                 e.printStackTrace();
             }

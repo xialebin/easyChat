@@ -1,5 +1,4 @@
 import com.app.SpringApplicationMain;
-import com.app.common.RedisLock;
 import com.app.pojo.ChatMessage;
 import com.app.service.ChatMessageService;
 import com.app.util.DateTimeUtil;
@@ -20,9 +19,6 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {SpringApplicationMain.class})
 public class MongoTest {
-
-    @Autowired
-    RedisLock redisLock;
 
     @Autowired
     private ChatMessageService chatMessageService;
@@ -61,8 +57,11 @@ public class MongoTest {
     public void mongoSelect(){
 
         long base = 0L;
+
         for (int i = 0; i < 100; i++) {
+
             long startTime = new Date().getTime();
+
             Query query = new Query(Criteria.where("userId").is(33189).and("createTime").lte(1593873448480L));
             query.with(PageRequest.of(0,20));
 
@@ -77,12 +76,5 @@ public class MongoTest {
         System.out.println(base);
     }
 
-    @Test
-    public void testLua(){
-        String result = redisLock.lock("hi");
-        System.out.println(result);
-        redisLock.unLock("hi",result);
-        System.out.println("success");
-    }
 
 }

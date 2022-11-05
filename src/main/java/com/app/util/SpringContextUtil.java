@@ -4,7 +4,6 @@ package com.app.util;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
@@ -43,14 +42,6 @@ public class SpringContextUtil implements ApplicationContextAware {
     public static<T> T getBean(String beanName) throws BeansException{
         return (T) context.getBean(beanName);
     }
-
-    public static<T> boolean registerBean(String beanName,T bean){
-        ConfigurableApplicationContext context = (ConfigurableApplicationContext) SpringContextUtil.getApplicationContext();
-
-        context.getBeanFactory().registerSingleton(beanName,bean);
-        return true;
-    }
-
     public static void destroy() {
         context= null;
     }
